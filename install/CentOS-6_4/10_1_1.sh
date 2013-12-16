@@ -37,7 +37,7 @@ if [ -e /usr/local/cpanel ] || [ -e /usr/local/directadmin ] || [ -e /usr/local/
     exit
 fi
 
-# Ensure the installer is launched and can only be launched on CentOs 6.4
+# Ensure the installer is launched and can only be launched on CentOs 6.3 and above
 BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 if [ -f /etc/centos-release ]; then
   OS="CentOs"
@@ -47,10 +47,10 @@ else
   VER=$(uname -r)
 fi
 echo "Detected : $OS  $VER  $BITS"
-if [ "$OS" = "CentOs" ] && [ "$VER" = "6.4" ]; then
+if [ "$OS" = "CentOs" ] && [ "$VER" = "6.3" ] && [ "$VER" = "6.4" ] && [ "$VER" = "6.5" ]; then
   echo "Ok."
 else
-  echo "Sorry, this installer only supports the installation of ZPanel on CentOS 6.4."
+  echo "Sorry, this installer only supports the installation of ZPanel on CentOS 6.3 and above."
   exit 1;
 fi
 
@@ -63,7 +63,7 @@ exec 2>&1
 # * Common installer functions          *
 # ***************************************
 
-# Generates random passwords fro the 'zadmin' account as well as Postfix and MySQL root account.
+# Generates random passwords for the 'zadmin' account as well as Postfix and MySQL root account.
 passwordgen() {
          l=$1
            [ "$l" == "" ] && l=16
@@ -72,7 +72,8 @@ passwordgen() {
 
 # Display the 'welcome' splash/user warning info..
 echo -e "##############################################################"
-echo -e "# Welcome to the Official ZPanelX Installer for CentOS 6.4   #"
+echo -e "# Welcome to the Official ZPanelX Installer for CentOS 6.3   #"
+echo -e "# and above                                                  #"
 echo -e "#                                                            #"
 echo -e "# Please make sure your VPS provider hasn't pre-installed    #"
 echo -e "# any packages required by ZPanelX.                          #"
@@ -321,6 +322,14 @@ ln -s /etc/zpanel/configs/roundcube/config.inc.php /etc/zpanel/panel/etc/apps/we
 ln -s /etc/zpanel/configs/roundcube/db.inc.php /etc/zpanel/panel/etc/apps/webmail/config/db.inc.php
 
 # Enable system services and start/restart them as required.
+service httpd stop
+service postfix stop
+service dovecot stop
+service crond stop
+service mysqld stop
+service named stop
+service proftpd stop
+service atd stop
 chkconfig httpd on
 chkconfig postfix on
 chkconfig dovecot on
@@ -329,9 +338,9 @@ chkconfig mysqld on
 chkconfig named on
 chkconfig proftpd on
 service httpd start
-service postfix restart
+service postfix start
 service dovecot start
-service crond reload
+service crond start
 service mysqld start
 service named start
 service proftpd start
