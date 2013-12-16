@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# OS VERSION: CentOS 6.4+ Minimal
+# OS VERSION: CentOS 6.3+ Minimal
 # ARCH: x32_64
 
 ZPX_VERSION=10.1.1
@@ -28,7 +28,7 @@ if [ $UID -ne 0 ]; then
     exit 1;
 fi
 
-# Ensure the upgrade script is launched and can only be launched on CentOs 6.4
+# Ensure the upgrade script is launched and can only be launched on CentOs 6.3 and above
 BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 if [ -f /etc/centos-release ]; then
   OS="CentOs"
@@ -38,10 +38,10 @@ else
   VER=$(uname -r)
 fi
 echo "Detected : $OS  $VER  $BITS"
-if [ "$OS" = "CentOs" ] && [ "$VER" = "6.4" ]; then
+if [ "$OS" = "CentOs" ] && [ "$VER" = "6.3" ] && [ "$VER" = "6.4" ] && [ "$VER" = "6.5" ]; then
   echo "Ok."
 else
-  echo "Sorry, this upgrade script only supports ZPanel on CentOS 6.4."
+  echo "Sorry, this upgrade script only supports ZPanel on CentOS 6.3 and above."
   exit 1;
 fi
 

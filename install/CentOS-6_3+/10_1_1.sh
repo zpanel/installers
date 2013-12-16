@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# OS VERSION: CentOS 6.4+ Minimal
+# OS VERSION: CentOS 6.3+ Minimal
 # ARCH: 32bit + 64bit
 
 ZPX_VERSION=10.1.1

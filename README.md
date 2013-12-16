@@ -12,12 +12,12 @@ The new installers and upgrade scripts enable you to install/upgrade  ZPanel dir
 Installation is now as simple as:-
 
 ```curl -Ss
-https://raw.github.com/zpanel/installers/master/install/CentOS-6_4/10_1_1.sh | bash```
+https://raw.github.com/zpanel/installers/master/install/CentOS-6_3+/10_1_1.sh | bash```
 
 ...and to upgrade your server (for example from ZPanel 10.1.0 to 10.1.1):-
 
 ```curl -Ss
-https://raw.github.com/zpanel/installers/master/upgrade/CentOS-6_4/10_1_1.sh | bash```
+https://raw.github.com/zpanel/installers/master/upgrade/CentOS-6_3+/10_1_1.sh | bash```
 
 *The above examples demonstrate the installation of ZPanel 10.1.1 and upgrading a server running CentOS 6.4*
 
@@ -26,7 +26,7 @@ https://raw.github.com/zpanel/installers/master/upgrade/CentOS-6_4/10_1_1.sh | b
 As a relatively small team of guys and due to the time required to keep installation packages updated and tested we have officially decided to support and maintain the following operating systems/distributions.
 
 - Latest Ubuntu Server LTS release (currently 12.04 LTS)
-- Latest CentOS (minimal) release (currently 6.4)
+- CentOS (minimal) release version 6.3 or above
 
 > By officially supported we refer to the fact that we ensure that prior to any release of ZPanel that the official ZPanel team have released and fully tested installer scripts and upgrade scripts for the OS versions listed above.
 
