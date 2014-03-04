@@ -189,11 +189,22 @@ apt-get -y install sudo wget vim make zip unzip git debconf-utils
 
 # We now clone the ZPX software from GitHub
 echo "Downloading ZPanel, Please wait, this may take several minutes, the installer will continue after this is complete!"
-git clone https://github.com/zpanel/zpanelx.git
-cd zpanelx/
-git checkout $ZPX_VERSION
-mkdir ../zp_install_cache/
-git checkout-index -a -f --prefix=../zp_install_cache/
+
+## Performance Improvement to download less data. Repo has 5 times bigger size than the actual source.
+# So we should download the zip file from git hub   -- by Aatif
+
+#git clone https://github.com/zpanel/zpanelx.git
+#cd zpanelx/
+#git checkout $ZPX_VERSION
+#mkdir ../zp_install_cache/
+#git checkout-index -a -f --prefix=../zp_install_cache/
+
+# wget has faster speed to download as compare to repo
+wget https://github.com/zpanel/zpanelx/archive/master.zip
+unzip master.zip
+mv zpanelx-master zp_install_cache
+#that's it. Rest of this will work as it is.
+
 cd ../zp_install_cache/
 
 # We now update the server software packages.
