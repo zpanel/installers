@@ -441,6 +441,7 @@ echo -e "##############################################################" &>/dev/
 echo -e "" &>/dev/tty
 
 # We now request that the user restarts their server...
+while true; do
 read -e -p "Restart your server now to complete the install (y/n)? " rsn
 	case $rsn in
 		[Yy]* ) break;;
