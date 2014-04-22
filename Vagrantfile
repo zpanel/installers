@@ -72,7 +72,31 @@ Vagrant.configure("2") do |config|
 			# custom virtual machine setup
 			vb.hostname = "zp32ubuntu"
 	    	end
-	end # end config
+	end # end define
+	
+##### Ubuntu 14.04 vagrant
+
+# ubuntu 14.04 32bit # IP : 192.168.33.15
+	config.vm.define 'zpanel_14.04ubuntu32' do |ubuntu32|
+		ubuntu32.vm.box = "ubuntu14_04-32"
+		ubuntu32.vm.network :private_network, ip: "192.168.33.15"
+		ubuntu32.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+		ubuntu32.vm.provider :virtualbox do |vb|
+			# custom virtual machine setup
+        		vb.hostname = "zp32ubuntu"
+    		end
+	end # end define
+# ubuntu 14.04 64bit # IP : 192.168.33.16
+	config.vm.define 'zpanel_14.04ubuntu64' do |ubuntu32|
+		ubuntu32.vm.box = "ubuntu14_04-64"
+		ubuntu32.vm.network :private_network, ip: "192.168.33.16"
+		ubuntu32.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+		ubuntu32.vm.provider :virtualbox do |vb|
+			# custom virtual machine setup
+        		vb.hostname = "zp64ubuntu"
+    		end
+	end # end define
+### end
 
 
 end # Toplevel end
