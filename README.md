@@ -44,8 +44,13 @@ Spawn os environments ,
     12.04 
 	32bit -> $ vagrant up zpanel_12.04ubuntu32
 	64bit -> $ vagrant up zpanel_12.04ubuntu64
+	
     12.10
 	32bit -> $ vagrant up ubuntu12_10-32
+	
+	 14.04
+	32bit -> $ vagrant up zpanel_14.04ubuntu32
+	64bit -> $ vagrant up zpanel_14.04ubuntu64
 #### centos
     6.4
 	32bit -> $ vagrant up zpanel_6.4centos32
