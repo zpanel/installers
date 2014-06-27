@@ -226,6 +226,7 @@ cd ../zp_install_cache/
 # Lets pull in all the required updates etc.
 rpm --import https://fedoraproject.org/static/0608B895.txt
 cp etc/build/config_packs/centos_6_3/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo
+yum -y install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 # add lamp scl depot
 wget https://github.com/zpanel/installers/raw/master/install/beta/CentOS_6/lamp_scl.repo -P /etc/yum.repos.d
@@ -237,7 +238,7 @@ yum -y update
 yum -y upgrade
 
 # Install required software and dependencies required by ZPanel.
-yum -y install ld-linux.so.2 libbz2.so.1 libdb-4.7.so libgd.so.2 httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc curl curl-devel perl-libwww-perl libxml2 libxml2-devel mysql mysql-server zip webalizer gcc gcc-c++ httpd24-httpd-devel at make mysql-devel bzip2-devel postfix postfix-perl-scripts bash-completion dovecot dovecot-mysql dovecot-pigeonhole mysql-server proftpd proftpd-mysql bind bind-utils bind-libs
+yum -y install --enablerepo=remi ld-linux.so.2 libbz2.so.1 libdb-4.7.so libgd.so.2 httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc curl curl-devel perl-libwww-perl libxml2 libxml2-devel mysql mysql-server zip webalizer gcc gcc-c++ httpd24-httpd-devel at make mysql-devel bzip2-devel postfix postfix-perl-scripts bash-completion dovecot dovecot-mysql dovecot-pigeonhole mysql-server proftpd proftpd-mysql bind bind-utils bind-libs
 
 
 # install suhosin
