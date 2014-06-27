@@ -116,6 +116,7 @@ rm -f "/etc/zpanel/configs/apache/httpd.conf"
 wget https://github.com/zpanel/zpanelx/raw/10.1.1/etc/build/config_packs/centos_6_5/apache/httpd.conf -O "/etc/zpanel/configs/apache/httpd.conf"
 if ! grep -q "Include /etc/zpanel/configs/apache/httpd.conf" /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf; then echo "Include /etc/zpanel/configs/apache/httpd.conf" >> /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf; fi
 sed -i 's|<Directory "/opt/rh/httpd24/root/var/www">|<Directory "/etc/zpanel/panel">|' /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
+sed -i 's|DocumentRoot "/opt/rh/httpd24/root/var/www/html"|DocumentRoot "/etc/zpanel/panel"|' /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
 sed -i "s|KeepAlive Off|KeepAlive On|" /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
 # PHP specific installation tasks...
 tz=`cat /etc/timezone`
