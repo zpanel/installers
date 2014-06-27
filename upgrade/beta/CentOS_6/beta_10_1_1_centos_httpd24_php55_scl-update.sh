@@ -50,9 +50,10 @@ fi
 
 #check zpanel version
 
-if [ "$ZPX_VERSION" = "$ZPX_VERSION_ACTUAL" ] ; then
+if [ "$ZPX_VERSION" != "$ZPX_VERSION_ACTUAL" ] ; then
 echo "your version of ZPanel not updated"
 echo "execut bash <(curl -Ss https://raw.github.com/zpanel/installers/master/upgrade/CentOS-6_4/10_1_1.sh)"
+exit
 fi
 
 # Set custom logging methods so we create a log file in the current working directory.
