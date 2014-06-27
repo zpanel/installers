@@ -237,7 +237,18 @@ yum -y update
 yum -y upgrade
 
 # Install required software and dependencies required by ZPanel.
-yum -y install ld-linux.so.2 libbz2.so.1 libdb-4.7.so libgd.so.2 httpd24 httpd24-httpd php55 php55-php php55-php-suhosin php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc curl curl-devel perl-libwww-perl libxml2 libxml2-devel mysql mysql-server zip webalizer gcc gcc-c++ httpd24-httpd-devel at make mysql-devel bzip2-devel postfix postfix-perl-scripts bash-completion dovecot dovecot-mysql dovecot-pigeonhole mysql-server proftpd proftpd-mysql bind bind-utils bind-libs
+yum -y install ld-linux.so.2 libbz2.so.1 libdb-4.7.so libgd.so.2 httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc curl curl-devel perl-libwww-perl libxml2 libxml2-devel mysql mysql-server zip webalizer gcc gcc-c++ httpd24-httpd-devel at make mysql-devel bzip2-devel postfix postfix-perl-scripts bash-completion dovecot dovecot-mysql dovecot-pigeonhole mysql-server proftpd proftpd-mysql bind bind-utils bind-libs
+
+
+# install suhosin
+git clone https://github.com/stefanesser/suhosin.git
+cd suhosin
+scl enable php55 "phpize"
+scl enable php55 "./configure"
+scl enable php55 "make"
+scl enable php55 "make install"
+cp suhosin.ini /opt/rh/php55/root/etc/php.d
+
 
 # Generation of random passwords
 password=`passwordgen`;
