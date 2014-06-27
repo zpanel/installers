@@ -97,8 +97,9 @@ cat httpd24.sql | mysql -u root -p$mysqlpassword
 wget https://github.com/zpanel/installers/raw/master/install/beta/CentOS_6/lamp_scl.repo -P /etc/yum.repos.d
 service httpd stop
 chkconfig httpd off
-yum -y update
-yum -y install httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc httpd24-httpd-devel
+yum -y install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+yum -y --enablerepo=remi update
+yum -y --enablerepo=remi install httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc httpd24-httpd-devel
 # install suhosin
 git clone https://github.com/stefanesser/suhosin.git
 cd suhosin
