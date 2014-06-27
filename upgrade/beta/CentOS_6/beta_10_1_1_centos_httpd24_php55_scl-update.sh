@@ -96,7 +96,7 @@ cat httpd24.sql | mysql -u root -p$mysqlpassword
 # add lamp scl depot
 wget https://github.com/zpanel/installers/raw/master/install/beta/CentOS_6/lamp_scl.repo -P /etc/yum.repos.d
 service httpd stop
-chksonfig httpd off
+chkconfig httpd off
 yum -y update
 yum -y install httpd24 httpd24-httpd php55 php55-php php55-php-devel php55-php-gd php55-php-mbstring php55-php-mcrypt php55-php-intl php55-php-imap php55-php-mysql php55-php-xml php55-php-xmlrpc httpd24-httpd-devel
 # install suhosin
@@ -118,6 +118,7 @@ if ! grep -q "Include /etc/zpanel/configs/apache/httpd.conf" /opt/rh/httpd24/roo
 sed -i 's|<Directory "/opt/rh/httpd24/root/var/www">|<Directory "/etc/zpanel/panel">|' /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
 sed -i "s|KeepAlive Off|KeepAlive On|" /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
 # PHP specific installation tasks...
+tz=`cat /etc/timezone`
 sed -i "s|;date.timezone =|date.timezone = $tz|" /opt/rh/php55/root/etc/php.ini
 sed -i "s|;upload_tmp_dir =|upload_tmp_dir = /var/zpanel/temp/|" /opt/rh/php55/root/etc/php.ini
 #Disable php signature in headers to hide it from hackers
