@@ -248,6 +248,8 @@ scl enable php55 "./configure"
 scl enable php55 "make"
 scl enable php55 "make install"
 cp suhosin.ini /opt/rh/php55/root/etc/php.d
+cd ..
+rm -rf suhosin
 
 
 # Generation of random passwords
