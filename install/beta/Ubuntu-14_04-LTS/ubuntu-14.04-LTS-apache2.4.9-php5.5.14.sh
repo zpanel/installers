@@ -428,6 +428,15 @@ service bind9 start
 service proftpd start
 service atd start
 php /etc/zpanel/panel/bin/daemon.php
+# restart service after daemon
+service apache2 restart
+service postfix restart
+service dovecot restart
+service cron restart
+service mysql restart
+service bind9 restart
+service proftpd restart
+service atd restart
 
 # We'll now remove the temporary install cache.
 cd ../
