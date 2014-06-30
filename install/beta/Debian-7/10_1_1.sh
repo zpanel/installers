@@ -3,7 +3,7 @@
 # OS VERSION: Debian Server 7
 # ARCH: x32_64
 
-ZPX_VERSION=10.1.0
+ZPX_VERSION=10.1.1
 
 # Official ZPanel Automated Installation Script
 # =============================================
