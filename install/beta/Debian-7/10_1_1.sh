@@ -160,12 +160,15 @@ echo -ne "\nUpdating Aptitude Repos: " >/dev/tty
         rm -rf "/etc/apt/sources.list/*"
         cp "/etc/apt/sources.list" "/etc/apt/sources.list.save"
 cat > /etc/apt/sources.list <<EOF
-#Dépots main restricted
-deb http://ftp.uk.debian.org/debian/ wheezy main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ wheezy main contrib non-free
+#Dépots main contrib non-free
+deb http://http.debian.net/debian wheezy main contrib non-free
+deb-src http://http.debian.net/debian wheezy main contrib non-free
 
-deb http://ftp.uk.debian.org/debian/ wheezy-updates main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ wheezy-updates main contrib non-free
+deb http://http.debian.net/debian wheezy-updates main contrib non-free
+deb-src http://http.debian.net/debian wheezy-updates main contrib non-free
+
+deb http://security.debian.org/ wheezy/updates main contrib non-free
+deb-src http://security.debian.org/ wheezy/updates main contrib non-free
 EOF
 
 apt-get -yqq update &>/dev/null
