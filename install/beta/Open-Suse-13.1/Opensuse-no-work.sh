@@ -39,31 +39,31 @@ fi
 
 # Lets check for some common packages that we know will affect the installation/operating of ZPanel.
 # We expect a clean OS so no apache/mySQL/bind/postfix/php!
-if dpkg -s php apache mysql bind postfix dovecot; then
-    echo "You appear to have a server with apache/mysql/bind/postfix already installed; "
-    echo "This installer is designed to install and configure ZPanel on a clean OS "
-    echo "installation only!"
-    echo ""
-    echo "Please re-install your OS before attempting to install using this script."
-    exit
-fi
+#if dpkg -s php apache mysql bind postfix dovecot; then
+#    echo "You appear to have a server with apache/mysql/bind/postfix already installed; "
+#    echo "This installer is designed to install and configure ZPanel on a clean OS "
+#    echo "installation only!"
+#    echo ""
+#    echo "Please re-install your OS before attempting to install using this script."
+#    exit
+#fi
 
 # Ensure the installer is launched and can only be launched on Ubuntu 14.04
-BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
-if [ -f /etc/lsb-release ]; then
-  OS=$(cat /etc/lsb-release | grep DISTRIB_ID | sed 's/^.*=//')
-  VER=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | sed 's/^.*=//')
-else
-  OS=$(uname -s)
-  VER=$(uname -r)
-fi
-echo "Detected : $OS $VER $BITS"
-if [ "$OS" = "Ubuntu" ] && [ "$VER" = "14.04" ]; then
-  echo "Ok."
-else
-  echo "Sorry, this installer only supports the installation of ZPanel on Ubuntu 12.04."
-  exit 1;
-fi
+#BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
+#if [ -f /etc/os-release ]; then
+#  OS=$(cat /etc/os-release | grep ID_LIKE | sed 's/^.*=//')
+#  VER=`cat /etc/SuSE-release | tr "\n" ' '| sed s/VERSION.*//`
+#else
+#  OS=$(uname -s)
+#  VER=$(uname -r)
+#fi
+#echo "Detected : $OS $VER $BITS"
+#if [ "$OS" = ""suse"" ] && [ "$VER" = "openSUSE 13.1 (x86_64)" ]; then
+#  echo "Ok."
+#else
+#  echo "Sorry, this installer only supports the installation of ZPanel on Opensuse 13.1 x86_64 online"
+#  exit 1;
+#fi
 
 ZPX_VERSION=10.1.1
 
@@ -81,16 +81,16 @@ passwordgen() {
 # Display the 'welcome' splash/user warning info..
 echo -e ""
 echo -e "##############################################################"
-echo -e "# Official ZPanel Automated Installation Script BETA 2 #"
-echo -e "# Welcome to the Official ZPanelX Installer for Ubuntu #"
-echo -e "# Server 14.04.x LTS #"
+echo -e "# Official ZPanel Automated Installation Script BETA 1 #"
+echo -e "# Welcome to the Official ZPanelX Installer for OpenSuse #"
+echo -e "# Server 13.1 #"
 echo -e "# #"
 echo -e "# Please make sure your VPS provider hasn't pre-installed #"
 echo -e "# any packages required by ZPanelX. #"
 echo -e "# #"
 echo -e "# If you are installing on a physical machine where the OS #"
 echo -e "# has been installed by yourself please make sure you only #"
-echo -e "# installed Ubuntu Server with no extra packages. #"
+echo -e "# installed OpenSuse Server with no extra packages. #"
 echo -e "# #"
 echo -e "# If you selected additional options during the Ubuntu #"
 echo -e "# install please consider reinstalling without them. #"
@@ -216,7 +216,7 @@ sudo chown root /etc/zpanel/panel/bin/zsudo
 chmod +s /etc/zpanel/panel/bin/zsudo
 
 
-service mysqld start
+service mysql start
 /usr/bin/mysqladmin -u root password $password
 mysqladmin -u root password $password
 until mysql -u root -p$password -e ";" > /dev/null 2>&1 ; do
@@ -371,13 +371,23 @@ ln -s /etc/zpanel/configs/roundcube/main.inc.php /etc/zpanel/panel/etc/apps/webm
 ln -s /etc/zpanel/configs/roundcube/config.inc.php /etc/zpanel/panel/etc/apps/webmail/plugins/managesieve/config.inc.php
 ln -s /etc/zpanel/configs/roundcube/db.inc.php /etc/zpanel/panel/etc/apps/webmail/config/db.inc.php
 
+# enable start service
+chkconfig apache2 on
+chkconfig postfix on
+chkconfig dovecot on
+chkconfig cron on
+chkconfig mysql on
+chkconfig bind on
+chkconfig proftpd on
+chkconfig atd on
+
 # Enable system services and start/restart them as required.
 service apache2 start
 service postfix restart
 service dovecot start
 service cron reload
 service mysql start
-service bind9 start
+service bind start
 service proftpd start
 service atd start
 php /etc/zpanel/panel/bin/daemon.php
@@ -386,7 +396,7 @@ service apache2 restart
 service postfix restart
 service dovecot restart
 service cron restart
-service mysqld restart
+service mysql restart
 service bind restart
 service proftpd restart
 service atd restart
