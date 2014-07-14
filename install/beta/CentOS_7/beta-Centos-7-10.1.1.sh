@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bashht
 
 # OS VERSION: CentOS 7 + Minimal
 # ARCH: 32bit + 64bit
@@ -370,21 +370,21 @@ chmod -R 644 /var/zpanel/logs/proftpd
 serverhost=`hostname`
 
 # Apache HTTPD specific installation tasks...
-if ! grep -q "Include /etc/zpanel/configs/apache/httpd.conf" /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf; then echo "Include /etc/zpanel/configs/apache/httpd.conf" >> /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf; fi
+if ! grep -q "Include /etc/zpanel/configs/apache/httpd.conf" /etc/httpd/conf/httpd.conf; then echo "Include /etc/zpanel/configs/apache/httpd.conf" >> /etc/httpd/conf/httpd.conf; fi
 if ! grep -q "127.0.0.1 "$fqdn /etc/hosts; then echo "127.0.0.1 "$fqdn >> /etc/hosts; fi
 if ! grep -q "apache ALL=NOPASSWD: /etc/zpanel/panel/bin/zsudo" /etc/sudoers; then echo "apache ALL=NOPASSWD: /etc/zpanel/panel/bin/zsudo" >> /etc/sudoers; fi
-sed -i 's|<Directory "/opt/rh/httpd24/root/var/www">|<Directory "/etc/zpanel/panel">|' /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
+sed -i 's|<Directory "/opt/rh/httpd24/root/var/www">|<Directory "/etc/zpanel/panel">|' /etc/httpd/conf/httpd.conf
 chown -R apache:apache /var/zpanel/temp/
 #Set keepalive on (default is off)
-sed -i "s|KeepAlive Off|KeepAlive On|" /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf
+sed -i "s|KeepAlive Off|KeepAlive On|" /etc/httpd/conf/httpd.conf
 # PHP specific installation tasks...
-sed -i "s|;date.timezone =|date.timezone = $tz|" /opt/rh/php55/root/etc/php.ini
-sed -i "s|;upload_tmp_dir =|upload_tmp_dir = /var/zpanel/temp/|" /opt/rh/php55/root/etc/php.ini
+sed -i "s|;date.timezone =|date.timezone = $tz|" /etc/php.ini
+sed -i "s|;upload_tmp_dir =|upload_tmp_dir = /var/zpanel/temp/|" /etc/php.ini
 #Disable php signature in headers to hide it from hackers
-sed -i "s|expose_php = On|expose_php = Off|" /opt/rh/php55/root/etc/php.ini
+sed -i "s|expose_php = On|expose_php = Off|" /etc/php.ini
 
 # Permissions fix for Apache and ProFTPD (to enable them to play nicely together!)
-if ! grep -q "umask 002" /etc/sysconfig/httpd; then echo "umask 002" >> /opt/rh/httpd24/root/etc/sysconfig/httpd; fi
+if ! grep -q "umask 002" /etc/sysconfig/httpd; then echo "umask 002" >> /etc/sysconfig/httpd; fi
 if ! grep -q "127.0.0.1 $serverhost" /etc/hosts; then echo "127.0.0.1 $serverhost" >> /etc/hosts; fi
 usermod -a -G apache ftpuser
 usermod -a -G ftpgroup apache
