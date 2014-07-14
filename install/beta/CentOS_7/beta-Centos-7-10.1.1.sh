@@ -52,14 +52,14 @@ fi
 BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 if [ -f /etc/centos-release ]; then
   OS="CentOs"
-  VER=$(cat /etc/centos-release | sed 's/^.*release //;s/ (Fin.*$//')
+  VER=$(rpm -qa \*-release | grep -Ei "oracle|redhat|centos" | cut -d"-" -f3)
 else
   OS=$(uname -s)
   VER=$(uname -r)
 fi
 echo "Detected : $OS  $VER  $BITS"
 #warning the last version of centos and 7.x
-if [ "$OS" = "CentOs" ] && [ "$VER" = "7.0.1406 (Core)" ] ; then
+if [ "$OS" = "CentOs" ] && [ "$VER" = "7" ] ; then
   echo "Ok."
 else
   echo "Sorry, this installer only supports the installation of ZPanel on CentOS 7.x."
