@@ -437,7 +437,9 @@ service php-fpm start
 service postfix restart
 service dovecot start
 service crond start
-service mysqld restart
+service mysqld stop
+rm -f /var/lib/mysql/mysql.sock
+service mysqld start
 service named start
 service proftpd start
 service atd start
@@ -447,7 +449,9 @@ service httpd24-httpd restart
 service postfix restart
 service dovecot restart
 service crond restart
-service mysqld restart
+service mysqld stop
+rm -f /var/lib/mysql/mysql.sock
+service mysqld start
 service named restart
 service proftpd restart
 service atd restart
@@ -482,4 +486,6 @@ read -e -p "Restart your server now to complete the install (y/n)? " rsn
 		[Nn]* ) exit;
 	esac
 done
+service mysqld stop
+rm -f /var/lib/mysql/mysql.sock
 shutdown -r now
