@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# OS VERSION: CentOS 6.4+ Minimal
+# OS VERSION: CentOS 7 + Minimal
 # ARCH: 32bit + 64bit
 
 ZPX_VERSION=10.1.1
 
-# Official ZPanel Automated Installation Script Beta using apache 2.4 php 5.5 with scl
+# Official ZPanel Automated Installation Script Beta
 # =============================================
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ passwordgen() {
 
 # Display the 'welcome' splash/user warning info..
 echo -e "###################################################################"
-echo -e "# Welcome to the Official ZPanelX Beta Installer for CentOS 6.4   #"
+echo -e "# Welcome to the Official ZPanelX Beta Installer for CentOS 7     #"
 echo -e "#                                                                 #"
 echo -e "#    Please make sure your VPS provider hasn't pre-installed      #"
 echo -e "#    any packages required by ZPanelX.                            #"
