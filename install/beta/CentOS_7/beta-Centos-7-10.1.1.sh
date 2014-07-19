@@ -1,4 +1,4 @@
-#!/usr/bin/env bashht
+#!/usr/bin/env bash
 
 # OS VERSION: CentOS 7 + Minimal
 # ARCH: 32bit + 64bit
@@ -244,7 +244,7 @@ cd suhosin
 ./configure
 make
 make install
-cp suhosin.ini /etc/php.d
+echo 'extension=suhosin.so' > /etc/php.d/suhosin.ini
 cd ..
 rm -rf suhosin
 
