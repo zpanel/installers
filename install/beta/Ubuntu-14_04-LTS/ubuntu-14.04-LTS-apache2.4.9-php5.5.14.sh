@@ -61,7 +61,7 @@ echo "Detected : $OS  $VER  $BITS"
 if [ "$OS" = "Ubuntu" ] && [ "$VER" = "14.04" ]; then
   echo "Ok."
 else
-  echo "Sorry, this installer only supports the installation of ZPanel on Ubuntu 12.04."
+  echo "Sorry, this installer only supports the installation of ZPanel on Ubuntu 14.04."
   exit 1;
 fi
 
