@@ -99,8 +99,11 @@ echo -e "##############################################################"
 echo -e ""
 
 # Set some installation defaults/auto assignments
-fqdn=`/bin/hostname`
-publicip=`wget -qO- http://api.zpanelcp.com/ip.txt`
+# using hostname-f for fqdn
+fqdn=`hostname -f`
+# http://api.zpanelcp.com/ip.txt -- 502 Bad Gateway
+# Quick fix until the api gets online
+publicip=`wget -qO- http://ipecho.net/plain`
 
 # Lets check that the user wants to continue first as obviously otherwise we'll be removing AppArmor for no reason.
 while true; do
