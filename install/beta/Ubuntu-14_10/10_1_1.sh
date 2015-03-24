@@ -48,7 +48,7 @@ if dpkg -s php apache mysql bind postfix dovecot; then
     exit
 fi
 
-# Ensure the installer is launched and can only be launched on Ubuntu 14.04
+# Ensure the installer is launched and can only be launched on Ubuntu 14.10
 BITS=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 if [ -f /etc/lsb-release ]; then
   OS=$(cat /etc/lsb-release | grep DISTRIB_ID | sed 's/^.*=//')
