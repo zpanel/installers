@@ -47,7 +47,7 @@ OS=$(uname -s)
   VER=$(uname -r)
 fi
 echo "Detected : $OS $VER $BITS"
-if [ "$OS" = "Debian" ] && [ "$VER" = "7" ] || [ "$VER" = "7.0" ] || [ "$VER" = "7.1" ] || [ "$VER" = "7.2" ] || [ "$VER" = "7.3" ] || [ "$VER" = "7.4" ] || [ "$VER" = "7.5" ] ; then
+if [ "$OS" = "Debian" ] && [ "$VER" = "7" ] || [ "$VER" = "7.0" ] || [ "$VER" = "7.1" ] || [ "$VER" = "7.2" ] || [ "$VER" = "7.3" ] || [ "$VER" = "7.4" ] || [ "$VER" = "7.5" ] || [ "$VER" = "7.6" ] || [ "$VER" = "7.7" ] || [ "$VER" = "7.8" ] ; then
 echo "Ok."
 else
 echo "Sorry, this installer only supports the installation of ZPanel on Debian 7."
