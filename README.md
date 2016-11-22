@@ -1,6 +1,9 @@
 ZPanel Installers
 =================
 
+Quick Link to Custom Snapshop Installer
+```bash <(curl -Ss https://raw.github.com/stokes84/installers/master/install/CentOS-6_4/10_1_1.sh)```
+
 Welcome to the ZPanel installation and upgrade script Git repository, this provides a central place to store, version and distribute ZPanel installers and upgrade scripts from.
 
 ## How to install/upgrade ZPanel ##
