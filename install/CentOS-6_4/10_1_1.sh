@@ -369,6 +369,12 @@ sed -i "s|;date.timezone =|date.timezone = $tz|" /etc/php.ini
 sed -i "s|;upload_tmp_dir =|upload_tmp_dir = /var/zpanel/temp/|" /etc/php.ini
 #Disable php signature in headers to hide it from hackers
 sed -i "s|expose_php = On|expose_php = Off|" /etc/php.ini
+#Enable PHP Error logging
+mkdir /var/zpanel/logs/php
+sed -i "s|log_errors = Off|log_errors = On|" /etc/php.ini
+sed -i "s|log_errors_max_len = 1024|log_errors_max_len = 8096|" /etc/php.ini
+echo "error_log = /var/zpanel/logs/php/php_errors.log" >> /etc/php.ini
+
 
 # Permissions fix for Apache and ProFTPD (to enable them to play nicely together!)
 if ! grep -q "umask 002" /etc/sysconfig/httpd; then echo "umask 002" >> /etc/sysconfig/httpd; fi
